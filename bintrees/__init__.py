@@ -146,6 +146,9 @@ __all__ = [
     'RBTree'
 ]
 
+import logging
+log = logging.getLogger(__name__)
+
 from .bintree import BinaryTree
 from .avltree import AVLTree
 from .rbtree import RBTree
@@ -153,17 +156,17 @@ from .rbtree import RBTree
 try:
     from .cython_trees import FastBinaryTree
 except ImportError:  # fall back to pure Python version
-    print("Warning: FastBinaryTree not available, using Python version BinaryTree.")
+    log.warn("FastBinaryTree not available, using Python version BinaryTree.")
     FastBinaryTree = BinaryTree
 
 try:
     from .cython_trees import FastAVLTree
 except ImportError:  # fall back to pure Python version
-    print("Warning: FastAVLTree not available, using Python version AVLTree.")
+    log.warn("FastAVLTree not available, using Python version AVLTree.")
     FastAVLTree = AVLTree
 
 try:
     from .cython_trees import FastRBTree
 except ImportError:  # fall back to pure Python version
-    print("Warning: FastRBTree not available, using Python version RBTree.")
+    log.warn("FastRBTree not available, using Python version RBTree.")
     FastRBTree = RBTree
